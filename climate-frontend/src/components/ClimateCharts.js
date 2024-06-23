@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { get_country_data, get_static_data } from '../controller';
+import { get_country_data } from '../controller';
 
 const CountryData = ({ countryName }) => {
   const [data, setData] = useState(null);
@@ -7,9 +7,9 @@ const CountryData = ({ countryName }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const getData = async () => {
+    const fetchData = async () => {
       try {
-        const result = get_country_data(countryName);
+        const result = await get_country_data(countryName);
         setData(result);
         setLoading(false);
       } catch (error) {
@@ -18,20 +18,20 @@ const CountryData = ({ countryName }) => {
       }
     };
 
-    getData();
+    fetchData();
   }, [countryName]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
+  const histogramUrl = `http://127.0.0.1:5000/static/${data.histogram_path}`;
+
   return (
     <div>
       <h1>Data for {countryName}</h1>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-      <img src={get_static_data(data.histogram_path)} alt={`${countryName} histogram`} />
+      <img src={histogramUrl} alt={`${countryName} histogram`} />
     </div>
   );
 };
 
 export default CountryData;
-

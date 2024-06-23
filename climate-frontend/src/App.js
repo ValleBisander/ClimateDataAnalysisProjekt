@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Climate Data Visualization</h1>
-        <ClimateChart />
+        <ClimateChart countryName={'Zimbabwe'}  />
       </header>
     </div>
   );
