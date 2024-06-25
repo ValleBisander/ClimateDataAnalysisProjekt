@@ -1,7 +1,7 @@
 # src/app/routes.py
 import os
 import sys
-from flask import Blueprint, jsonify, send_from_directory
+from flask import Blueprint, jsonify, send_from_directory, make_response
 
 current_path = os.path.abspath(os.path.dirname(__file__))
 project_root = os.path.abspath(os.path.join(current_path, '..', '..'))
@@ -18,7 +18,11 @@ def index():
 @main.route('/country/<country_name>', methods=['GET'])
 def get_country_data(country_name):
     data = process_country_data(country_name)
-    return jsonify(data)
+    response = make_response(jsonify(data))
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add("Access-Control-Allow-Headers", "Content-Type,Authorization")
+    response.headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS")
+    return response
 
 @main.route('/static/<path:static_name>', methods=['GET'])
 def get_static_data(static_name):

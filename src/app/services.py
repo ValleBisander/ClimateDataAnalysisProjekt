@@ -2,9 +2,8 @@
 import os
 import sys
 import pandas as pd
-import matplotlib
-matplotlib.use('Agg')  
-import matplotlib.pyplot as plt
+import plotly.express as px
+import plotly.io as pio
 
 current_path = os.path.abspath(os.path.dirname(__file__))
 src_root = os.path.abspath(os.path.join(current_path, '..', '..'))
@@ -26,19 +25,11 @@ def process_country_data(country_name):
     # Calculate the average temperature for each year
     avg_temp_per_year = df.groupby('year')['average_temp'].mean().reset_index()
 
-    # Perform calculations or create a histogram
-    fig, ax = plt.subplots()
-    df['average_temp'].plot(kind='hist', ax=ax)
+    # Create an interactive line chart with Plotly
+    fig = px.line(avg_temp_per_year, x='year', y='average_temp', title=f'Average Temperature in {country_name} Over Time')
     
-    # Save histogram to static folder
-    histogram_path = os.path.join('static', f"{country_name}_histogram.png")
+    graphJSON = pio.to_json(fig, pretty=True)
     
-    fig.savefig(histogram_path)
-    plt.close(fig)  # Close the figure to free memory
-
-    # Return the processed data, average temperature per year, and histogram path
     return {
-        "data": df.to_dict(orient='records'),
-        "average_temp_per_year": avg_temp_per_year.to_dict(orient='records'),
-        "histogram_path": f"{country_name}_histogram.png"
+        "graphJSON": graphJSON
     }

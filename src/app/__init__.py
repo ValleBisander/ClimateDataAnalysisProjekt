@@ -9,13 +9,14 @@ db = SQLAlchemy()
 def create_app():
 
     app = Flask(__name__, static_folder='static')
-    CORS(app)
     
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:valle123@localhost:1234/mydatabase'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.init_app(app)
 
+    CORS(app, resources={r"/*": {"origins": "*"}})
+    
     from .routes import main
     
     app.register_blueprint(main, url_prefix ='/')
