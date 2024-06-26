@@ -1,13 +1,21 @@
-import ClimateChart from './components/ClimateCharts';
-import './App.css';
+// src/App.js
+import React from 'react';
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
+import StartPage from './pages/start/StartPage';
+import MainPage from './pages/main/MainPage';
+import ClimateVisualization from './pages/climateVisuals/ClimateVisualsPage';
+
 
 function App() {
   return (
-    <div className="App">
-     
-        <ClimateChart countryName={'Zimbabwe'}  />
-     
-    </div>
+    <BrowserRouter>
+        <Routes>
+          <Route exact path="/" element={<StartPage />} />
+          <Route path="/main" element={<MainPage/>} />
+          <Route path="/climate-visualization" element={<ClimateVisualization/>}/>
+        </Routes>
+    </BrowserRouter>
   );
 }
-export default App;
+
+export default App; 

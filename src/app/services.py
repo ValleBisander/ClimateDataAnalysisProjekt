@@ -22,10 +22,8 @@ def process_country_data(country_name):
     df['date'] = pd.to_datetime(df['date'])
     df['year'] = df['date'].dt.year
     
-    # Calculate the average temperature for each year
     avg_temp_per_year = df.groupby('year')['average_temp'].mean().reset_index()
 
-    # Create an interactive line chart with Plotly
     fig = px.line(avg_temp_per_year, x='year', y='average_temp', title=f'Average Temperature in {country_name} Over Time')
     
     graphJSON = pio.to_json(fig, pretty=True)
@@ -33,3 +31,7 @@ def process_country_data(country_name):
     return {
         "graphJSON": graphJSON
     }
+
+def get_list_of_temperature_data_countries():
+    countries = TemperatureData.query.with_entities(TemperatureData.country).distinct().all()
+    return [country[0] for country in countries]

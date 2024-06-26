@@ -3,15 +3,15 @@ import { fetch } from '../api';
 import Plot from 'react-plotly.js';
 
 const CountryData = ({ countryName }) => {
-  const [plot, setPlot] = useState(null);
+  const [plot, setPlot] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await fetch('/country/' + countryName);
-        setPlot(JSON.parse(result.data));
+        const result = await fetch('/temperatureData/' + countryName)
+        setPlot(JSON.parse(result.graphJSON));
         setLoading(false);
       } catch (error) {
         setError(error);

@@ -1,0 +1,10 @@
+/* src/pages/main/MainPage.css */
+.main-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: top;
+    height: 100vh;
+    padding: 100px;
+    box-sizing: border-box;
+  }

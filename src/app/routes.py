@@ -7,7 +7,7 @@ current_path = os.path.abspath(os.path.dirname(__file__))
 project_root = os.path.abspath(os.path.join(current_path, '..', '..'))
 sys.path.insert(0, project_root)
 
-from src.app.services import process_country_data
+from src.app.services import process_country_data, get_list_of_temperature_data_countries
 
 main = Blueprint('main', __name__)
 
@@ -15,14 +15,15 @@ main = Blueprint('main', __name__)
 def index():
     return jsonify({"message": "Welcome to the Climate Data API!"})
 
-@main.route('/country/<country_name>', methods=['GET'])
+@main.route('/temperatureData/<country_name>', methods=['GET'])
 def get_country_data(country_name):
     data = process_country_data(country_name)
-    response = make_response(jsonify(data))
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    response.headers.add("Access-Control-Allow-Headers", "Content-Type,Authorization")
-    response.headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS")
-    return response
+    return data
+
+@main.route('/countriesList')
+def get_countries_list():
+    countries = get_list_of_temperature_data_countries()
+    return jsonify(countries)
 
 @main.route('/static/<path:static_name>', methods=['GET'])
 def get_static_data(static_name):
