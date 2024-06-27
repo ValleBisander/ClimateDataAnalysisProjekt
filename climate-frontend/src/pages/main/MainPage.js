@@ -1,13 +1,15 @@
 // src/pages/main/MainPage.js
 import React from 'react';
-import FeatureBox from './FeatureBox';
+import FeatureBox from '../../components/FeatureBox';
 import './MainPage.css';
+
 
 const features = [
   {
     title: 'Climate Visualization',
     description: 'Explore interactive climate charts and data visualizations.',
     path: '/climate-visualization',
+    imagePath: '/graph.jpg'
   },
   {
     title: 'Historical Data',
@@ -31,7 +33,9 @@ const MainPage = () => {
           title={feature.title}
           description={feature.description}
           path={feature.path}
+          imagePath={`${process.env.PUBLIC_URL}${feature.imagePath}`}
         />
+        
       ))}
     </div>
   );

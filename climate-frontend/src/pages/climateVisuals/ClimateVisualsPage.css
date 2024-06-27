@@ -1,0 +1,25 @@
+.ClimateVisuals-page {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: top;
+  background-color: bisque;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+  color: rgb(74, 73, 68);
+}
+
+.feature-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: top;
+  padding:40px;
+  box-sizing: border-box;
+}

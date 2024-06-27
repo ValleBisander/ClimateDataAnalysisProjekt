@@ -1,43 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import Select from 'react-select';
-import CountryData from '../../components/ClimateCharts';
-import { fetch } from '../../api';
+import React from 'react';
+import FeatureBox from '../../components/FeatureBox';
+import './ClimateVisualsPage.css';
 
 const ClimateVisuals = () => {
-  const [countries, setCountries] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState(null);
-
-  useEffect(() => {
-    const fetchCountries = async () => {
-      try {
-        const result = await fetch('/countriesList');
-        setCountries(result.map(country => ({ label: country, value: country })));
-      } catch (error) {
-        console.error("Error fetching countries: ", error);
-      }
-    };
-
-    fetchCountries();
-  }, []);
+  const features = [
+    {
+      title: 'Average temperatures around the world',
+      description: 'Explore Average temperature trends',
+      path: '/AvgTempPage'
+    }
+  ];
 
   return (
-    <div>
+    <div className="ClimateVisuals-page">
       <header>
         <h1>Climate Visuals</h1>
-        <p>Explore average temperature trends by country</p>
+        <p>Explore climate data visuals</p>
       </header>
-      <main>
-        <div className="menu">
-          <Select
-            options={countries}
-            onChange={setSelectedCountry}
-            placeholder="Select a country"
+      <div className="feature-container">
+        {features.map((feature, index) => (
+          <FeatureBox
+            key={index}
+            title={feature.title}
+            description={feature.description}
+            path={feature.path}
           />
-        </div>
-        <div className="content">
-          {selectedCountry && <CountryData countryName={selectedCountry.value} />}
-        </div>
-      </main>
+        ))}
+      </div>
     </div>
   );
 };

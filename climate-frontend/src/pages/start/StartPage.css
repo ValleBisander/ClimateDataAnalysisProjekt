@@ -5,7 +5,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url('C:\Users\valde\OneDrive\Skrivbord\ClimateDataAnalysisProjekt\climate-frontend\public\nature.jpg');
+  background-image: url('C:\Users\valde\OneDrive\Skrivbord\ClimateDataAnalysisProjekt\climate-frontend\public\natures.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -17,6 +17,7 @@
     top: -20px;
     margin-bottom: 0.1em;
     color: white;
+    filter: drop-shadow(0 0 5px #2c4f6e);
   }
 
   
@@ -26,6 +27,7 @@
     top:80px;
     margin-bottom: 3em;
     color: white;
+    filter: drop-shadow(0 0 5px #3d6181);
   }
 
 

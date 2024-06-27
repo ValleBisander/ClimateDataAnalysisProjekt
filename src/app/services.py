@@ -11,7 +11,7 @@ sys.path.insert(0, src_root)
 
 from src.database.models import TemperatureData
 
-def process_country_data(country_name):
+def average_temp_per_year(country_name):
     # Query the database for the specified country
     data = TemperatureData.query.filter_by(country=country_name).all()
     

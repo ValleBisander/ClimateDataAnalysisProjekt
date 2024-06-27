@@ -10,7 +10,7 @@ const CountryData = ({ countryName }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await fetch('/temperatureData/' + countryName)
+        const result = await fetch('/averageTempPerYear/' + countryName)
         setPlot(JSON.parse(result.graphJSON));
         setLoading(false);
       } catch (error) {
