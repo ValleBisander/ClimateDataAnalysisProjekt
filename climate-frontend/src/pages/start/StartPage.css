@@ -14,7 +14,7 @@
   .start-page h1 {
     font-size: 4em;
     position:absolute;
-    top: -20px;
+    top: 5px;
     margin-bottom: 0.1em;
     color: white;
     filter: drop-shadow(0 0 5px #2c4f6e);

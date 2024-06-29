@@ -7,7 +7,7 @@ const StartPage = () => {
   const navigate = useNavigate();
 
   const navigateToMain = () => {
-    navigate('/main');
+    navigate('/explore');
   };
 
   return (

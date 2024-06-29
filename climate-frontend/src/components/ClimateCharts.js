@@ -27,7 +27,6 @@ const CountryData = ({ countryName }) => {
 
   return (
     <div>
-      <h1>Data for {countryName}</h1>
       <Plot data={plot.data} layout={plot.layout}/>
     </div>
   );

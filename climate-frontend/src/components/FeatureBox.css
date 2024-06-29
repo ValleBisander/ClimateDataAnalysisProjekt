@@ -1,13 +1,13 @@
 /* src/components/FeatureBox.css */
 .feature-box {
-  background-color: #4a6e9b;
+  background-color: #fff;
   border: transparent;
   padding: 20px;
   margin: 10px;
   width: 300px; 
   height: 400px;
   text-align: center;
-  color: rgb(254, 254, 254);
+  color: #1f1f1f;
   cursor: pointer;
   border-radius: 12px;
   transition: background-color 0.3s ease;
@@ -18,8 +18,8 @@
 }
 
 .feature-box:hover {
-  background-color: #7798d5;
-  filter: drop-shadow(0 0 15px rgb(157, 136, 112));
+
+  filter: drop-shadow(0 0 10px rgb(229, 229, 229));
 }
 
 .feature-box h3 {
