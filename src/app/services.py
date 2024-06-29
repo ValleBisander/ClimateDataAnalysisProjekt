@@ -24,8 +24,31 @@ def average_temp_per_year(country_name):
     
     avg_temp_per_year = df.groupby('year')['average_temp'].mean().reset_index()
 
-    fig = px.line(avg_temp_per_year, x='year', y='average_temp', title=f'Average Temperature in {country_name} Over Time')
+    fig = px.line(avg_temp_per_year, x='year', y='average_temp', title=f'Average Yearly Temperature in {country_name} Over Time')
     
+    fig.update_traces(line=dict(color='cyan'))  # Change 'cyan' to your desired color
+    
+    # Update the layout for background color, text color, and grid color
+    fig.update_layout(
+        plot_bgcolor='#1f1f1f',
+        paper_bgcolor='#1f1f1f',
+        font=dict(color='white'),
+        title_font=dict(color='white'),
+        xaxis=dict(
+            title_font=dict(color='white'), 
+            tickfont=dict(color='white'),
+            gridcolor='grey',  # Change grid color here
+            zerolinecolor='grey'  # Change zero line color here
+        ),
+        yaxis=dict(
+            title_font=dict(color='white'), 
+            tickfont=dict(color='white'),
+            gridcolor='grey',  # Change grid color here
+            zerolinecolor='grey'  # Change zero line color here
+        )
+        
+    )
+
     graphJSON = pio.to_json(fig, pretty=True)
     
     return {
